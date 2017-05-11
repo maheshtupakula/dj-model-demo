@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>the Index</title>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+        }
+        h2 {
+            color: teal;
+        }
+        table {
+            border: 1px solid #333;
+            padding: 1px;
+        }
+        table td,
+        table th {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        table tr {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Projects</h1>
+    {% for movie in movie_list %}
+        <h2>Project: <strong>{{ movie.title }}</strong></h2>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        Roles
+                    </th>
+                </tr>
+                <tr>
+                    <th>Assignment</th>
+                    <th>Actor</th>
+                    <th>Gender</th>
+                    <th>Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for role in movie.roles %}
+                    {% for actor in role.actors %}
+                        <tr>
+                            <td>{{ role.name }}</td>
+                            <td>{{ actor.full_name }}</td>
+                            <td>{{ actor.gender }}</td>
+                            <td>{{ role.salary.amount }} hours</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endfor %}
+</body>
+</html>
